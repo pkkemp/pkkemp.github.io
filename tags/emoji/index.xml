@@ -1,24 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>emoji on thoughts on...</title>
-    <link>https://prestonkemp.com/tags/emoji/</link>
-    <description>Recent content in emoji on thoughts on...</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Wed, 20 Nov 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://prestonkemp.com/tags/emoji/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Thoughts on TLS Inspection</title>
-      <link>https://prestonkemp.com/post/thoughts-on-tls-inspection/</link>
-      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://prestonkemp.com/post/thoughts-on-tls-inspection/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>emoji on thoughts on...</title><link>https://prestonkemp.com/tags/emoji/</link><description>Recent content in emoji on thoughts on...</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 05 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://prestonkemp.com/tags/emoji/index.xml" rel="self" type="application/rss+xml"/><item><title>Emoji Support</title><link>https://prestonkemp.com/post/emoji-support/</link><pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate><guid>https://prestonkemp.com/post/emoji-support/</guid><description>&lt;p>Emoji can be enabled in a Hugo project in a number of ways.&lt;/p>
+&lt;p>The &lt;a href="https://gohugo.io/functions/emojify/">&lt;code>emojify&lt;/code>&lt;/a> function can be called directly in templates or &lt;a href="https://gohugo.io/templates/shortcode-templates/#inline-shortcodes">Inline Shortcodes&lt;/a>.&lt;/p>
+&lt;p>To enable emoji globally, set &lt;code>enableEmoji&lt;/code> to &lt;code>true&lt;/code> in your site’s &lt;a href="https://gohugo.io/getting-started/configuration/">configuration&lt;/a> and then you can type emoji shorthand codes directly in content files; e.g.&lt;/p>
+&lt;p>&lt;code>:s ee_no_evil:[Remove the space]&lt;/code> 🙈 &lt;code>:h ear_no_evil:[Remove the space]&lt;/code> 🙉 &lt;code>:s peak_no_evil:[Remove the space]&lt;/code> 🙊&lt;/p></description></item></channel></rss>
