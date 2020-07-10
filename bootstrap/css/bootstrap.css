@@ -9448,44 +9448,6 @@ img::-moz-selection {
     padding: 25px 35px;
 }
 
-
-@media (prefers-color-scheme: dark) {
-  body {
-      background-color: #1f2935;
-      color: var(--white);
-      font-size: 20px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  }
-  pre code {
-    color: var(--white);
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-      font-weight: 800;
-      color: white;
-      font-family: -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
-  }
-  a {
-      color: white;
-      transition: all 0.2s;
-  }
-  blockquote {
-      font-style: italic;
-      color: var(--white);
-  }
-  img {
-    opacity: .75;
-    transition: opacity .5s ease-in-out;
-  }
-  img:hover {
-      opacity: 1;
-  }
-}
-
 #mainNav {
     position: absolute;
     border-bottom: 1px solid #e9ecef;
@@ -9565,6 +9527,59 @@ img::-moz-selection {
         -webkit-transform: translate3d(0, 100%, 0);
         transform: translate3d(0, 100%, 0);
     }
+}
+@media (prefers-color-scheme: dark) {
+  body {
+      background-color: #191b1f;
+      color: hsla(0,0%,100%,.85);
+      font-size: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+  pre code {
+      color: hsla(0,0%,100%,.85);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+      font-weight: 800;
+      color: hsla(0,0%,100%,.85);
+      font-family: -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+  a {
+      color: hsla(0,0%,100%,.85);
+      transition: all 0.2s;
+  }
+  blockquote {
+      font-style: italic;
+      color: var(--white);
+  }
+  img {
+    opacity: .75;
+    transition: opacity .5s ease-in-out;
+  }
+  img:hover {
+      opacity: 1;
+  }
+  #mainNav {
+      position: absolute;
+      border-bottom: 1px solid #e9ecef;
+      background-color: #191b1f;
+      font-family: -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+  #mainNav .navbar-brand {
+      font-weight: 800;
+      color: hsla(0,0%,100%,.85);
+  }
+  #mainNav .navbar-toggler {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 13px;
+      text-transform: uppercase;
+      color: hsla(0,0%,100%,.85);
+  }
 }
 header.masthead {
     margin-bottom: 50px;
