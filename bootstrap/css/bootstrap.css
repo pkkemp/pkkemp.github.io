@@ -1713,7 +1713,7 @@ pre code {
 .table-secondary > th {
     background-color: #d6d8db;
 }
-.table-secondary tbody + tbody,
+.table-secondary tbody + t,
 .table-secondary td,
 .table-secondary th,
 .table-secondary thead th {
@@ -9355,6 +9355,7 @@ a.text-dark:hover {
         border-color: #dee2e6;
     }
 }
+
 body {
     font-size: 20px;
     color: #212529;
@@ -9446,6 +9447,45 @@ img::-moz-selection {
     font-size: 16px;
     padding: 25px 35px;
 }
+
+
+@media (prefers-color-scheme: dark) {
+  body {
+      background-color: #1f2935;
+      color: var(--white);
+      font-size: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+  pre code {
+    color: var(--white);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+      font-weight: 800;
+      color: white;
+      font-family: -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+  a {
+      color: white;
+      transition: all 0.2s;
+  }
+  blockquote {
+      font-style: italic;
+      color: var(--white);
+  }
+  img {
+    opacity: .75;
+    transition: opacity .5s ease-in-out;
+  }
+  img:hover {
+      opacity: 1;
+  }
+}
+
 #mainNav {
     position: absolute;
     border-bottom: 1px solid #e9ecef;

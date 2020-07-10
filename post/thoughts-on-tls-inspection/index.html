@@ -1,4 +1,99 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><title>Thoughts on TLS Inspection</title><meta name=description content="A minimal Hugo theme with nice theme color."><meta name=author content="Preston Kemp"><link rel=stylesheet href=/css/style.css></head><body><header><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link type=text/css rel=stylesheet href=/bootstrap/css/bootstrap.css><link type=text/css rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link type=text/css rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link type=text/css rel=stylesheet href=/fonts/font-awesome.min.css><nav class="navbar navbar-light navbar-expand-lg fixed-top" id=mainNav><div class=container><a class=navbar-brand href=https://prestonkemp.com>thoughts on...</a><button data-toggle=collapse data-target=#navbarResponsive class=navbar-toggler aria-controls=navbarResponsive aria-expanded=false aria-label="Toggle navigation"><i class="fa fa-bars"></i></button></header><main><article><header class=masthead style=background-image:url(https://static.prestonkemp.com/photos/forest-simon-WbhLL-nivYM-unsplash.jpg)><div class=overlay></div><div class=container><div class=row><div class="col-md-10 col-lg-8 mx-auto"><div class=post-heading><h1>Thoughts on TLS Inspection</h1><h2 class=subheading></h2><span class=meta>Posted on <time>November 20, 2019</time> by Preston Kemp</span></div></div></div></div></header><article><div class=container><div class=row><div class="col-md-10 col-lg-8 mx-auto"><p>Something I&rsquo;ve noticed in my professional life is the propensity on the part of technical people to try and solve imaginary problems.</p><p>I think that TLS inspection is one of those imaginary problems.</p><p>If you ask people what they hope to accomplish using TLS inspection they&rsquo;ll say things like:</p><ol><li>Protecting Intellectual Property (DLP)</li><li>Protecting other Organizational Secrets (DLP)</li><li>Stopping malicious requests</li></ol><p>These are valid goals, but it&rsquo;s unclear how TLS inspection accomplishes any of them.</p><p>Some broad questions about the efficacy of this approach that immediately come to mind are:</p><ol><li>How does this not turn into something that just has hundreds (if not thousands) of false positives every single day? Is someone going to review them? Do you really have the manpower to do this sort of thing? And even if you did, unless a flagged request was blocked how much good is knowing about it after the fact?</li><li>What are the privacy and security implications of doing this? Do your users know you&rsquo;re doing it? Do they understand you have access to their plaintext credit card numbers, passwords, security questions, etc?</li><li>If one of your goals is to stop malformed or otherwise malicious requests, wouldn&rsquo;t your time be better spent patching vulnerable systems rather than putting another system that also needs to be patched in front of said vulnerable system?</li><li>TLS inspection only works on networks that you can control. How will you stop data exfiltration from users that work remotely?</li></ol><p>Some more specific areas of concern:</p><h2 id=1-tlsi-violates-the-principle-of-least-privilege>1. TLSi Violates the Principle of Least Privilege</h2><p>The white paper (if you can call it that) I reference above makes note that Insider Threats could result in compromise of user data, and could itself become a target of attack.</p><p>The white paper goes on to state that enterprises that choose to implement this technology should ensure that they are following the principle of &ldquo;least privilege&rdquo;</p><p>The problem with this suggestion is that it is neither useful nor honest. How can an organization ever hope to implement the principle of least privilege while purposefully injecting massive amounts of it in an unnecessary way? How can you prevent user data from being compromised in transit while breaking the thing that is meant to provide that protection (TLS).</p><hr><h2 id=2-tlsi-complicates-your-attack-surface>2. TLSi complicates your attack surface</h2><p>As an exercise for the security-conscious, consider the following:</p><ol><li>What happens to data after its <em>only</em> protection is broken?</li><li>Is it routed in plain-text through racks of equipment for further inspection? Who has access to those racks? What prevents someone from altering a route inside this construct to siphon off interesting data?</li><li>What do those inspection devices do with user data?</li><li>Do you know what SSL/TLS library your TLSi device uses? Is it open-source? Reputable? Up-to-date?</li></ol><h2 id=3-what-are-you-even-doing-with-it>3. What are you <em>even</em> doing with it?</h2><p>As discussed previously, TLS inspection has a valid set of goals, but there&rsquo;s never a conversation about the efficacy of this approach. Did deep packet inspection work well even when the majority of traffic was sent in the clear? If not, perhaps a different approach would more meaningfully address these concerns.</p><h2 id=4-tlsi-only-works-on-networks-that-you-control>4. TLSi only works on networks that you control</h2><p>Why can&rsquo;t a user just download whatever data they need, go to Starbucks and upload it?</p><h2 id=5-privacy-implications>5. Privacy Implications</h2><p>Someone will argue that users don&rsquo;t have an reasonable expectation of privacy on a corporate network, but that&rsquo;s a bad faith argument. It&rsquo;s incredibly deceptive (maybe even <em>evil</em>) to pretend that users should understand that to mean that their employer could have access to any personal information they enter on a website.</p><p>Do your users understand the security and privacy implications of what you&rsquo;re doing?</p><p>Do your users understand that you have access to their plain-text passwords, credit card numbers, security questions, etc? (a simple regex could be used to steal credit card numbers, social security numbers, etc.)</p><p>Even if your users have no &ldquo;reasonable expectation of privacy&rdquo; on your network, are your users aware of the implications of what you&rsquo;re doing so they can make an informed decision (informed consent)?</p><p>How would you feel if someone was in a position to steal all of your personal information, read your emails, etc?</p><p>Someone who operates one of these devices (or is capable of performing a plain-text capture) of data has a tremendous amount of power, how can you be confident that would result in user data abuse?</p><h2 id=6-poor-user-experience>6. Poor User Experience</h2><p>When behind an inspection device connection failures are almost never communicated to the end user. The connection is simply reset by the inspection device and the user is left wondering why.</p><h2 id=7-all-software-has-bugs>7. All Software has bugs</h2><p>Security software is not immune to bugs simply by virtue of being security software. All security software has bugs.</p><p>This has been written about extensively, so I won&rsquo;t belabor the point here, but security software very often injects privleges into software as a means to achieve its objective. things in order to achieve some security objective. In the In software such as anti-virus, this is achieved by process injection or by other methods of privilege injection.</p><p>Do you know what cryptographic library your TLS inspection device uses? When was it last updated?</p><p>Below is a bug from iOS 7 (famously referred to as #gotofail), the bug in question was part of the SSL library for iOS devices. The bug (line 12) illustrates the point that even well written security software has bugs.</p><h3 id=sslkeyexchangec>sslKeyExchange.c</h3><pre><code class=language-C>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Thoughts on TLS Inspection</title>
+	<meta name="description" content="A minimal Hugo theme with nice theme color.">
+	<meta name="author" content="Preston Kemp">
+	<link rel="stylesheet" href="/css/style.css">
+	
+</head>
+<body>
+	<header>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+	<link type="text/css" rel="stylesheet" href="/fonts/font-awesome.min.css">
+
+		<nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+				<div class="container"><a class="navbar-brand" href="https://prestonkemp.com">thoughts on...</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+	
+</header>
+
+	
+	<main>
+		<article>
+			<header class="masthead" style="background-image:url('https://static.prestonkemp.com/photos/forest-simon-WbhLL-nivYM-unsplash.jpg');">
+	        <div class="overlay"></div>
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md-10 col-lg-8 mx-auto">
+	                    <div class="post-heading">
+												<h1>Thoughts on TLS Inspection</h1>
+	                        <h2 class="subheading"></h2><span class="meta">Posted on <time>November 20, 2019</time> by Preston Kemp
+</span></div>
+	                </div>
+	            </div>
+	        </div>
+	    </header>
+			<article>
+					<div class="container">
+							<div class="row">
+									<div class="col-md-10 col-lg-8 mx-auto">
+										<p>Something I&rsquo;ve noticed in my professional life is the propensity on the part of technical people to try and solve imaginary problems.</p>
+<p>I think that TLS inspection is one of those imaginary problems.</p>
+<p>If you ask people what they hope to accomplish using TLS inspection they&rsquo;ll say things like:</p>
+<ol>
+<li>Protecting Intellectual Property (DLP)</li>
+<li>Protecting other Organizational Secrets (DLP)</li>
+<li>Stopping malicious requests</li>
+</ol>
+<p>These are valid goals, but it&rsquo;s unclear how TLS inspection accomplishes any of them.</p>
+<p>Some broad questions about the efficacy of this approach that immediately come to mind are:</p>
+<ol>
+<li>How does this not turn into something that just has hundreds (if not thousands) of false positives every single day? Is someone going to review them? Do you really have the manpower to do this sort of thing? And even if you did, unless a flagged request was blocked how much good is knowing about it after the fact?</li>
+<li>What are the privacy and security implications of doing this? Do your users know you&rsquo;re doing it? Do they understand you have access to their plaintext credit card numbers, passwords, security questions, etc?</li>
+<li>If one of your goals is to stop malformed or otherwise malicious requests, wouldn&rsquo;t your time be better spent patching vulnerable systems rather than putting another system that also needs to be patched in front of said vulnerable system?</li>
+<li>TLS inspection only works on networks that you can control. How will you stop data exfiltration from users that work remotely?</li>
+</ol>
+<p>Some more specific areas of concern:</p>
+<h2 id="1-tlsi-violates-the-principle-of-least-privilege">1. TLSi Violates the Principle of Least Privilege</h2>
+<p>The white paper (if you can call it that) I reference above makes note that Insider Threats could result in compromise of user data, and could itself become a target of attack.</p>
+<p>The white paper goes on to state that enterprises that choose to implement this technology should ensure that they are following the principle of &ldquo;least privilege&rdquo;</p>
+<p>The problem with this suggestion is that it is neither useful nor honest. How can an organization ever hope to implement the principle of least privilege while purposefully injecting massive amounts of it in an unnecessary way? How can you prevent user data from being compromised in transit while breaking the thing that is meant to provide that protection (TLS).</p>
+<hr>
+<h2 id="2-tlsi-complicates-your-attack-surface">2. TLSi complicates your attack surface</h2>
+<p>As an exercise for the security-conscious, consider the following:</p>
+<ol>
+<li>What happens to data after its <em>only</em> protection is broken?</li>
+<li>Is it routed in plain-text through racks of equipment for further inspection? Who has access to those racks? What prevents someone from altering a route inside this construct to siphon off interesting data?</li>
+<li>What do those inspection devices do with user data?</li>
+<li>Do you know what SSL/TLS library your TLSi device uses? Is it open-source? Reputable? Up-to-date?</li>
+</ol>
+<h2 id="3-what-are-you-even-doing-with-it">3. What are you <em>even</em> doing with it?</h2>
+<p>As discussed previously, TLS inspection has a valid set of goals, but there&rsquo;s never a conversation about the efficacy of this approach. Did deep packet inspection work well even when the majority of traffic was sent in the clear? If not, perhaps a different approach would more meaningfully address these concerns.</p>
+<h2 id="4-tlsi-only-works-on-networks-that-you-control">4. TLSi only works on networks that you control</h2>
+<p>Why can&rsquo;t a user just download whatever data they need, go to Starbucks and upload it?</p>
+<h2 id="5-privacy-implications">5. Privacy Implications</h2>
+<p>Someone will argue that users don&rsquo;t have an reasonable expectation of privacy on a corporate network, but that&rsquo;s a bad faith argument. It&rsquo;s incredibly deceptive (maybe even <em>evil</em>) to pretend that users should understand that to mean that their employer could have access to any personal information they enter on a website.</p>
+<p>Do your users understand the security and privacy implications of what you&rsquo;re doing?</p>
+<p>Do your users understand that you have access to their plain-text passwords, credit card numbers, security questions, etc? (a simple regex could be used to steal credit card numbers, social security numbers, etc.)</p>
+<p>Even if your users have no &ldquo;reasonable expectation of privacy&rdquo; on your network, are your users aware of the implications of what you&rsquo;re doing so they can make an informed decision (informed consent)?</p>
+<p>How would you feel if someone was in a position to steal all of your personal information, read your emails, etc?</p>
+<p>Someone who operates one of these devices (or is capable of performing a plain-text capture) of data has a tremendous amount of power, how can you be confident that would result in user data abuse?</p>
+<h2 id="6-poor-user-experience">6. Poor User Experience</h2>
+<p>When behind an inspection device connection failures are almost never communicated to the end user. The connection is simply reset by the inspection device and the user is left wondering why.</p>
+<h2 id="7-all-software-has-bugs">7. All Software has bugs</h2>
+<p>Security software is not immune to bugs simply by virtue of being security software. All security software has bugs.</p>
+<p>This has been written about extensively, so I won&rsquo;t belabor the point here, but security software very often injects privleges into software as a means to achieve its objective. things in order to achieve some security objective. In the In software such as anti-virus, this is achieved by process injection or by other methods of privilege injection.</p>
+<p>Do you know what cryptographic library your TLS inspection device uses? When was it last updated?</p>
+<p>Below is a bug from iOS 7 (famously referred to as #gotofail), the bug in question was part of the SSL library for iOS devices. The bug (line 12) illustrates the point that even well written security software has bugs.</p>
+<h3 id="sslkeyexchangec">sslKeyExchange.c</h3>
+<pre><code class="language-C">
 if ((err = SSLFreeBuffer(&amp;hashCtx)) != 0)
         goto fail;
 
@@ -33,7 +128,8 @@ fail:
 
 }
 
-</code></pre><pre><code class=language-html>&lt;!doctype html&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
   &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;&gt;
@@ -44,4 +140,28 @@ fail:
     &lt;h1&gt;Hello, world!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
-</code></pre></div></div></div></article></main><footer><div class=container><div class=row><div class="col-md-10 col-lg-8 mx-auto"><ul class="list-inline text-center"><li class=list-inline-item><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></li><li class=list-inline-item><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></li><li class=list-inline-item><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></li></ul><p class="text-muted copyright">Copyright&copy; 2020 <a href=https://prestonkemp.com>thoughts on...</a></p></div></div></div></footer></body></html>
+</code></pre>
+									</div>
+							</div>
+					</div>
+
+		</article>
+	</main>
+
+	<footer>
+	<div class="container">
+			<div class="row">
+					<div class="col-md-10 col-lg-8 mx-auto">
+							<ul class="list-inline text-center">
+									<li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></li>
+									<li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></li>
+									<li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></li>
+							</ul>
+							<p class="text-muted copyright">Copyright&copy; 2020 <a href="https://prestonkemp.com">thoughts on...</a></p>
+					</div>
+			</div>
+	</div>
+</footer>
+
+</body>
+</html>
