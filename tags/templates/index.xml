@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>themes on preston kemp</title>
-    <link>https://prestonkemp.com/tags/themes/</link>
-    <description>Recent content in themes on preston kemp</description>
+    <title>templates on preston kemp</title>
+    <link>https://prestonkemp.com/tags/templates/</link>
+    <description>Recent content in templates on preston kemp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 17 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://prestonkemp.com/tags/themes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://prestonkemp.com/tags/templates/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Hugo coder wiki</title>
-      <link>https://prestonkemp.com/posts/hugo-coder-wiki/</link>
-      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://prestonkemp.com/posts/hugo-coder-wiki/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>(Hu)go Template Primer</title>

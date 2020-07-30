@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>preston kemp</title>
-    <link>https://prestonkemp.com/</link>
-    <description>Recent content on preston kemp</description>
+    <title>Posts on preston kemp</title>
+    <link>https://prestonkemp.com/posts/</link>
+    <description>Recent content in Posts on preston kemp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 25 May 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://prestonkemp.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://prestonkemp.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -110,66 +110,6 @@ Follow the following steps:
       
       <guid>https://prestonkemp.com/posts/migrate-from-jekyll/</guid>
       <description>Table of Contents  Move static content to static Create your Hugo configuration file Set your configuration publish folder to site Convert Jekyll templates to Hugo templates Convert Jekyll plugins to Hugo shortcodes  Implementation Usage   Finishing Touches  Fix Content Clean Up   A practical example in a diff  Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output.</description>
-    </item>
-    
-    <item>
-      <title>About Hugo</title>
-      <link>https://prestonkemp.com/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://prestonkemp.com/about/</guid>
-      <description>Hugo is a static site engine written in Go.
-It makes use of a variety of open source projects including:
- Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.
-Setup Some fun facts about Hugo:
- Built in Go Loosely inspired by Jekyll Primarily developed by spf13 on the train while commuting to and from Manhattan. Coded in Vim using spf13-vim  Have questions or suggestions?</description>
-    </item>
-    
-    <item>
-      <title>Contact</title>
-      <link>https://prestonkemp.com/contact/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://prestonkemp.com/contact/</guid>
-      <description>Email me, public@prestonkemp.com</description>
-    </item>
-    
-    <item>
-      <title>First snippet</title>
-      <link>https://prestonkemp.com/snippets/first/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://prestonkemp.com/snippets/first/</guid>
-      <description>This content is in snippets/first/index.md
-pwd </description>
-    </item>
-    
-    <item>
-      <title>Projects</title>
-      <link>https://prestonkemp.com/projects/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://prestonkemp.com/projects/</guid>
-      <description>Nothing to see here&amp;hellip; Move along!</description>
-    </item>
-    
-    <item>
-      <title>Second snippet</title>
-      <link>https://prestonkemp.com/snippets/second/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://prestonkemp.com/snippets/second/</guid>
-      <description>This content is in snippets/second/index.md
-ls -la </description>
-    </item>
-    
-    <item>
-      <title>Sobre Hugo</title>
-      <link>https://prestonkemp.com/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://prestonkemp.com/about/</guid>
-      <description>Em construção&amp;hellip; Aguarde!</description>
     </item>
     
   </channel>
