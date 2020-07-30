@@ -81,3 +81,7 @@
 /* GenericUnderline */ .chroma .gl {  }
 /* Text */ .chroma . {  }
 /* TextWhitespace */ .chroma .w {  }
+
+.post-list {
+  padding-top: 50px;
+}
